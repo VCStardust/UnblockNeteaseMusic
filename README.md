@@ -44,7 +44,7 @@ sudo ./UnblockNeteaseMusic
   -l string
     	specify log file ,such as : "/var/log/unblockNeteaseMusic.log"
   -m int
-    	specify running mode（1:hosts） ,such as : "1" (default 1)
+    	specify running mode（1:hosts, other:proxy only） ,such as : "1" (default 0)
   -o string
     	specify server source,such as : "kuwo" (default "kuwo")
   -p int
