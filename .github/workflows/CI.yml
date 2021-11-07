@@ -1,4 +1,4 @@
-name: release Unblockneteasemusic
+name: CI
 on:
   push:
     branches: [ master ]
@@ -6,14 +6,11 @@ on:
     branches: [ master ]
     
 jobs:
-  build_luci:
+  def:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: init environment
-        run: |
-          sudo -E apt-get -y install upx
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -80,8 +77,6 @@ jobs:
               echo 'An error has occurred! Aborting the script execution...'
               exit 1
            fi
-           echo "Upxing..."
-           upx --lzma --best $TargetDir/$output_name
            cp -rf key/ca.crt $TargetDir/
            cp -rf key/server.key $TargetDir/
            cp -rf key/server.crt $TargetDir/
@@ -108,7 +103,7 @@ jobs:
           echo "Build Time:" $BuildTime
           echo "Build Finish"
           echo "--------------------------------------------"
-      - name: Upload a Build Artifact
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with: 
           path: bin/releaseUpload/
