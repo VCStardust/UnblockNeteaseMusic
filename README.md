@@ -33,27 +33,37 @@ sudo ./UnblockNeteaseMusic
 ### 具体参数说明
 
 ```shell
-./UnblockNeteaseMusic -h
+  ./UnblockNeteaseMusic -h
 
-  -b	force the best music quality
+  -b    force the best music quality
+  -ba
+        block advertising requests
+  -bu
+        block version update message
   -c string
-    	specify server cert,such as : "server.crt" (default "./server.crt")
-  -e	enable replace song url
+        specify server cert,such as : "server.crt" (default "./server.crt")
+  -e    enable replace song url
   -k string
-    	specify server cert key ,such as : "server.key" (default "./server.key")
+        specify server cert key ,such as : "server.key" (default "./server.key")
   -l string
-    	specify log file ,such as : "/var/log/unblockNeteaseMusic.log"
+        specify log file ,such as : "/var/log/unblockNeteaseMusic.log"
+  -lv
+        enable local vip
   -m int
-    	specify running mode（1:hosts, other:proxy only） ,such as : "1" (default 0)
+        specify running mode（1:hosts, other:proxy only） ,such as : "1"
   -o string
-    	specify server source,such as : "kuwo" (default "kuwo")
+        specify server source,such as : "kuwo" (default "kuwo")
   -p int
-    	specify server port,such as : "80" (default 80)
+        specify server port,such as : "80" (default 80)
+  -qc string
+        specify cookies file ,such as : "qq.cookie" (default "./qq.cookie")
+  -sef
+        unlock SoundEffects
   -sl int
-    	specify the number of songs searched on other platforms(the range is 0 to 3) ,such as : "1"
+        specify the number of songs searched on other platforms(the range is 0 to 3) ,such as : "1"
   -sp int
-    	specify server tls port,such as : "443" (default 443)
-  -v	display version info
+        specify server tls port,such as : "443" (default 443)
+  -v    display version info
 
 ```
 
