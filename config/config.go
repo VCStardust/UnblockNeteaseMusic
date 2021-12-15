@@ -21,7 +21,6 @@ var (
 	CertFile           = flag.String("c", "./server.crt", "specify server cert,such as : \"server.crt\"")
 	KeyFile            = flag.String("k", "./server.key", "specify server cert key ,such as : \"server.key\"")
 	LogFile            = flag.String("l", "", "specify log file ,such as : \"/var/log/unblockNeteaseMusic.log\"")
-	Mode               = flag.Int("m", 0, "specify running mode（1:hosts, other:proxy only） ,such as : \"1\"")
 	V                  = flag.Bool("v", false, "display version info")
 	EndPoint           = flag.Bool("e", false, "enable replace song url")
 	ForceBestQuality   = flag.Bool("b", false, "force the best music quality")
@@ -31,6 +30,7 @@ var (
 	EnableLocalVip     = flag.Bool("lv", false, "enable local vip")
 	UnlockSoundEffects = flag.Bool("sef", false, "unlock SoundEffects")
 	QQCookieFile       = flag.String("qc", "./qq.cookie", "specify cookies file ,such as : \"qq.cookie\"")
+	LocalOnly          = flag.Bool("lo", true, "Run on localhost only")
 )
 
 func ValidParams() bool {

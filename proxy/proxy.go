@@ -8,7 +8,6 @@ import (
 	"net"
 	"net/http"
 	"net/url"
-	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -28,6 +27,11 @@ func InitProxy() {
 	log.Println("-------------------Init Proxy-------------------")
 	address := "0.0.0.0:"
 	addrs, err := net.InterfaceAddrs()
+	if *config.LocalOnly {
+		localInterface, _ := net.InterfaceByIndex(0)
+		addrs, err = localInterface.Addrs()
+	}
+
 	if err != nil {
 		panic(err)
 	}
@@ -167,13 +171,7 @@ func (h *HttpHandler) ServeHTTP(resp http.ResponseWriter, request *http.Request)
 			if request.Method == http.MethodConnect {
 				proxyConnectLocalhost(resp, request)
 			} else {
-				if *config.Mode != 1 {
-					proxyDomain = hostStr
-				} else if hostIp, ok := common.HostDomain[hostStr]; ok {
-					proxyDomain = hostIp
-				} else {
-					proxyDomain = hostStr
-				}
+				proxyDomain = hostStr
 				if len(request.URL.Port()) > 0 {
 					proxyDomain = proxyDomain + ":" + request.URL.Port()
 				}
@@ -211,9 +209,7 @@ func (h *HttpHandler) ServeHTTP(resp http.ResponseWriter, request *http.Request)
 				proxyConnect(resp, request)
 			} else {
 				if proxyDomain, ok := common.HostDomain[hostStr]; ok {
-					if *config.Mode != 1 {
-						proxyDomain = hostStr
-					}
+					proxyDomain = hostStr
 					if len(request.URL.Port()) > 0 {
 						proxyDomain = proxyDomain + ":" + request.URL.Port()
 					}
@@ -358,10 +354,4 @@ func startServer(addr string, handler http.Handler) {
 		panic(err)
 	}
 
-}
-func printMemStats() {
-	var m runtime.MemStats
-	runtime.ReadMemStats(&m)
-
-	log.Printf("Alloc = %v TotalAlloc = %v Sys = %v NumGC = %v HeapInuse= %v \n", m.Alloc/1024, m.TotalAlloc/1024, m.Sys/1024, m.NumGC, m.HeapInuse/1024)
 }

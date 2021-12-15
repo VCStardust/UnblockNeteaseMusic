@@ -88,7 +88,6 @@ func (m MusicQuality) String() string {
 }
 
 var (
-	ProxyIp     = "127.0.0.1"
 	ProxyDomain = map[string]string{
 		"music.163.com":            "59.111.181.35",
 		"interface.music.163.com":  "59.111.181.35",
