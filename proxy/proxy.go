@@ -28,8 +28,8 @@ func InitProxy() {
 	address := "0.0.0.0:"
 	addrs, err := net.InterfaceAddrs()
 	if *config.LocalOnly {
-		localInterface, _ := net.InterfaceByIndex(0)
-		addrs, err = localInterface.Addrs()
+		loopbackAddr, _ := net.ResolveIPAddr("ip", "127.0.0.1")
+		addrs = []net.Addr{loopbackAddr}
 	}
 
 	if err != nil {
