@@ -24,7 +24,6 @@ func main() {
 	defer func() {
 		if r := recover(); r != nil {
 			log.Println("Recover panic : ", r)
-			restoreHosts()
 		}
 	}()
 	if config.ValidParams() {
@@ -36,7 +35,6 @@ func main() {
 		log.Println("certFile=", *config.CertFile)
 		log.Println("keyFile=", *config.KeyFile)
 		log.Println("logFile=", *config.LogFile)
-		log.Println("mode=", *config.Mode)
 		log.Println("endPoint=", *config.EndPoint)
 		log.Println("forceBestQuality=", *config.ForceBestQuality)
 		log.Println("searchLimit=", *config.SearchLimit)
@@ -61,7 +59,6 @@ func main() {
 			go func() {
 				sig := <-signalChan
 				log.Println("\nreceive signal:", sig)
-				restoreHosts()
 				exit <- true
 			}()
 			signal.Notify(signalChan, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGSEGV, syscall.SIGKILL)
@@ -72,14 +69,5 @@ func main() {
 		}
 	} else {
 		fmt.Println(version.AppVersion())
-	}
-}
-func restoreHosts() {
-	if *config.Mode == 1 {
-		log.Println("restoreHosts...")
-		err := host.RestoreHosts()
-		if err != nil {
-			log.Println("restoreHosts error:", err)
-		}
 	}
 }

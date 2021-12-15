@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/cnsilvan/UnblockNeteaseMusic/common"
-	"github.com/cnsilvan/UnblockNeteaseMusic/config"
 	"io"
 	"log"
 	"net"
@@ -220,52 +219,12 @@ func getHostsPath() (string, error) {
 	}
 	return hostsPath, nil
 }
-func RestoreHosts() error {
-	if *config.Mode == 1 {
-		hostsPath, err := getHostsPath()
-		if err == nil {
-			err := restoreHost(hostsPath)
-			return err
-		}
-	}
-	return nil
-}
 func InitHosts() error {
 	log.Println("-------------------Init Host-------------------")
-	if *config.Mode == 1 { //hosts mode
-		hostsPath, err := getHostsPath()
-		if err == nil {
-			containsProxyDomain := false
-			containsProxyDomain, err = backupHost(hostsPath)
-			if err == nil {
-				if containsProxyDomain {
-					if err = excludeRelatedHost(hostsPath); err == nil {
-						err = resolveIps()
-						if err != nil {
-							return err
-						}
-						log.Println("HostDomain:", common.HostDomain)
-					}
-				} else {
-					err = resolveIps()
-					if err != nil {
-						return err
-					}
-					log.Println("HostDomain:", common.HostDomain)
-				}
-				if err = appendToHost(hostsPath); err == nil {
-
-				}
-			}
-		}
-		return err
-	} else {
-		err := resolveIps()
-		if err != nil {
-			return err
-		}
-		log.Println("HostDomain:", common.HostDomain)
+	err := resolveIps()
+	if err != nil {
 		return err
 	}
-
+	log.Println("HostDomain:", common.HostDomain)
+	return err
 }

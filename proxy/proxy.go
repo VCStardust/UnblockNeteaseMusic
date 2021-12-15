@@ -167,13 +167,7 @@ func (h *HttpHandler) ServeHTTP(resp http.ResponseWriter, request *http.Request)
 			if request.Method == http.MethodConnect {
 				proxyConnectLocalhost(resp, request)
 			} else {
-				if *config.Mode != 1 {
-					proxyDomain = hostStr
-				} else if hostIp, ok := common.HostDomain[hostStr]; ok {
-					proxyDomain = hostIp
-				} else {
-					proxyDomain = hostStr
-				}
+				proxyDomain = hostStr
 				if len(request.URL.Port()) > 0 {
 					proxyDomain = proxyDomain + ":" + request.URL.Port()
 				}
@@ -211,9 +205,7 @@ func (h *HttpHandler) ServeHTTP(resp http.ResponseWriter, request *http.Request)
 				proxyConnect(resp, request)
 			} else {
 				if proxyDomain, ok := common.HostDomain[hostStr]; ok {
-					if *config.Mode != 1 {
-						proxyDomain = hostStr
-					}
+					proxyDomain = hostStr
 					if len(request.URL.Port()) > 0 {
 						proxyDomain = proxyDomain + ":" + request.URL.Port()
 					}
