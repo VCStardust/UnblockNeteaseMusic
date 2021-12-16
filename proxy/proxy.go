@@ -25,9 +25,9 @@ var localhost = map[string]int{}
 
 func InitProxy() {
 	log.Println("-------------------Init Proxy-------------------")
-	address := "0.0.0.0:"
-	if *config.LocalOnly {
-		address = "127.0.0.1:"
+	address := "127.0.0.1:"
+	if *config.EnablePublic {
+		address = "0.0.0.0:"
 	}
 
 	log.Println("Http Proxy:" + address + strconv.Itoa(*config.Port))

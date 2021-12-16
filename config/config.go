@@ -30,7 +30,7 @@ var (
 	EnableLocalVip     = flag.Bool("lv", false, "enable local vip")
 	UnlockSoundEffects = flag.Bool("sef", false, "unlock SoundEffects")
 	QQCookieFile       = flag.String("qc", "./qq.cookie", "specify cookies file ,such as : \"qq.cookie\"")
-	LocalOnly          = flag.Bool("lo", false, "Run on localhost only")
+	EnablePublic       = flag.Bool("pb", false, "Listen public address instead localhost")
 )
 
 func ValidParams() bool {
