@@ -26,31 +26,11 @@ var localhost = map[string]int{}
 func InitProxy() {
 	log.Println("-------------------Init Proxy-------------------")
 	address := "0.0.0.0:"
-	addrs, err := net.InterfaceAddrs()
 	if *config.LocalOnly {
-		loopbackAddr, _ := net.ResolveIPAddr("ip", "127.0.0.1")
-		addrs = []net.Addr{loopbackAddr}
+		address = "127.0.0.1:"
 	}
 
-	if err != nil {
-		panic(err)
-	}
-	for _, address := range addrs {
-		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-			if ipnet.IP.To4() != nil {
-				localhost[ipnet.IP.String()] = 1
-			}
-			if ipnet.IP.To16() != nil {
-				localhost[ipnet.IP.To16().String()] = 1
-			}
-		}
-	}
-	var localhostKey []string
-	for k, _ := range localhost {
-		localhostKey = append(localhostKey, k)
-	}
-	log.Println("Http Proxy:")
-	log.Println(strings.Join(localhostKey, " , "))
+	log.Println("Http Proxy:" + address + strconv.Itoa(*config.Port))
 	go startTlsServer(address+strconv.Itoa(*config.TLSPort), *config.CertFile, *config.KeyFile, &HttpHandler{})
 	go startServer(address+strconv.Itoa(*config.Port), &HttpHandler{})
 }
