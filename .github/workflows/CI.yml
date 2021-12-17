@@ -103,7 +103,80 @@ jobs:
           echo "Build Time:" $BuildTime
           echo "Build Finish"
           echo "--------------------------------------------"
-      - name: Upload Build Artifact
+      - name: Upload Build Artifact (darwin-amd64)
         uses: actions/upload-artifact@v2.2.4
         with: 
-          path: bin/releaseUpload/
+          name: UnblockNeteaseMusic-darwin-amd64
+          path: bin/releaseUpload/UnblockNeteaseMusic-darwin-amd64.zip
+
+      - name: Upload Build Artifact (darwin-arm64)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-darwin-arm64
+          path: bin/releaseUpload/UnblockNeteaseMusic-darwin-arm64.zip
+
+      - name: Upload Build Artifact (linux-386)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-386
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-386.zip
+
+      - name: Upload Build Artifact (linux-amd64)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-amd64
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-amd64.zip
+
+      - name: Upload Build Artifact (linux-arm)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-arm
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-arm.zip
+
+      - name: Upload Build Artifact (linux-arm5)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-arm5
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-arm5.zip
+
+      - name: Upload Build Artifact (linux-arm7)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-arm7
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-arm7.zip
+
+      - name: Upload Build Artifact (linux-arm64)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-arm64
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-arm64.zip
+
+      - name: Upload Build Artifact (linux-mips-softfloat)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-mips-softfloat
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-mips-softfloat.zip
+
+      - name: Upload Build Artifact (linux-mips)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-mips
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-mips.zip
+
+      - name: Upload Build Artifact (linux-mipsle-softfloat)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-mipsle-softfloat
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-mipsle-softfloat.zip
+
+      - name: Upload Build Artifact (linux-mipsle)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-linux-mipsle
+          path: bin/releaseUpload/UnblockNeteaseMusic-linux-mipsle.zip
+
+      - name: Upload Build Artifact (windows-amd64)
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          name: UnblockNeteaseMusic-windows-amd64
+          path: bin/releaseUpload/UnblockNeteaseMusic-windows-amd64.zip
