@@ -200,9 +200,9 @@ func parseSongFn(key common.MapType, music common.SearchMusic) *common.Song {
 	result.Size = 0
 	for _, song := range songs {
 
-		if song.MatchScore > result.MatchScore {
+		if song.MatchScore > result.MatchScore && song.MatchScore > 0.66 {
 			result = song
-		} else if song.MatchScore == result.MatchScore && song.Size > result.Size {
+		} else if song.MatchScore == result.MatchScore && song.Size > result.Size && song.MatchScore > 0.66 {
 			result = song
 		}
 	}
